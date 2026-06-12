@@ -1,1 +1,1 @@
-# Rankers-mathematics-
+# Rankers mathematics-
