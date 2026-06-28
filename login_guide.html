@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rankers Mathematics — Login Guide</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0B2D6B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .guide-wrap {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* Header */
+  .guide-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .guide-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 36px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .guide-title {
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .guide-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+  }
+
+  /* Steps */
+  .steps-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .step-dot.active {
+    background: #C9952A;
+    width: 28px;
+    border-radius: 5px;
+  }
+
+  /* Card */
+  .step-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    display: none;
+  }
+  .step-card.active {
+    display: block;
+    animation: slideIn 0.35s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-visual {
+    background: linear-gradient(135deg, #0B2D6B, #1346A0);
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Phone mockup */
+  .phone {
+    width: 160px;
+    background: #1a1a1a;
+    border-radius: 24px;
+    padding: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .phone-screen {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    min-height: 240px;
+  }
+  .phone-notch {
+    width: 40px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    margin: 4px auto 8px;
+  }
+
+  /* Screen content */
+  .screen-gate {
+    padding: 10px 8px;
+  }
+  .screen-header {
+    background: linear-gradient(135deg, #0B2D6B, #1346A0);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .screen-logo {
+    width: 28px;
+    height: 28px;
+    background: white;
+    border-radius: 7px;
+    margin: 0 auto 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .screen-name { color: white; font-size: 7px; font-weight: 700; }
+  .screen-sub { color: rgba(255,255,255,0.7); font-size: 5px; }
+
+  .screen-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+  .screen-tab {
+    padding: 5px;
+    text-align: center;
+    font-size: 6px;
+    font-weight: 600;
+    border-radius: 6px;
+    background: #F3F4F6;
+    color: #6B7280;
+  }
+  .screen-tab.active {
+    background: #DBEAFE;
+    color: #1346A0;
+    border-bottom: 2px solid #1346A0;
+  }
+
+  .screen-label { font-size: 6px; font-weight: 600; color: #6B7280; margin-bottom: 3px; }
+  .screen-input {
+    border: 1.5px solid #E5E7EB;
+    border-radius: 5px;
+    padding: 4px 6px;
+    font-size: 6px;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .screen-input.focused { border-color: #1346A0; }
+  .screen-btn {
+    width: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 6px;
+    font-weight: 700;
+    color: white;
+    background: #1346A0;
+    margin-bottom: 4px;
+  }
+  .screen-btn.green { background: #1A7A40; }
+  .screen-btn.gray { background: #F3F4F6; color: #6B7280; }
+  .screen-success {
+    background: #E6F5EB;
+    border-radius: 6px;
+    padding: 5px;
+    text-align: center;
+    font-size: 6px;
+    color: #1A7A40;
+    font-weight: 700;
+  }
+  .screen-bar {
+    background: linear-gradient(90deg, #1A7A40, #0F6E56);
+    padding: 4px 8px;
+    font-size: 6px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px 4px 0 0;
+    margin: -8px -8px 8px;
+  }
+
+  /* Typing animation */
+  .typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid #1346A0;
+    animation: typing 1.5s steps(6) infinite;
+    max-width: 0;
+  }
+  .typing-text.done {
+    animation: typing-done 0.5s steps(6) forwards, blink 0.7s step-end 3;
+    border-right: 1px solid #1346A0;
+  }
+  @keyframes typing { from { max-width: 0; } to { max-width: 60px; } }
+  @keyframes typing-done { from { max-width: 0; } to { max-width: 60px; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* Pulse animation */
+  .pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  /* Tick animation */
+  .tick-anim {
+    font-size: 32px;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Step info */
+  .card-body {
+    padding: 20px;
+  }
+  .step-num {
+    display: inline-block;
+    background: #DBEAFE;
+    color: #1346A0;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .step-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1A1A2E;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: #4B5563;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .step-desc strong { color: #1346A0; }
+
+  .tip-box {
+    background: #FFF8E7;
+    border-left: 3px solid #C9952A;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #4B5563;
+    margin-bottom: 16px;
+  }
+  .tip-box strong { color: #C9952A; }
+
+  /* Nav buttons */
+  .card-nav {
+    display: flex;
+    gap: 10px;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+  .nav-btn.prev {
+    background: #F3F4F6;
+    color: #4B5563;
+  }
+  .nav-btn.next {
+    background: #1346A0;
+    color: white;
+  }
+  .nav-btn:hover { opacity: 0.9; }
+
+  /* Share button */
+  .share-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+
+  /* Step 5 success */
+  .success-visual {
+    background: linear-gradient(135deg, #0F6E56, #1A7A40);
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .success-visual .tick-anim { color: white; }
+  .success-visual p { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600; }
+
+  /* Footer */
+  .guide-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+  }
+  .guide-footer a { color: rgba(255,255,255,0.7); }
+
+  /* Highlight arrow */
+  .arrow-hint {
+    position: absolute;
+    font-size: 20px;
+    animation: bounce 0.8s ease-in-out infinite alternate;
+  }
+  @keyframes bounce {
+    from { transform: translateY(-4px); }
+    to { transform: translateY(4px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="guide-wrap">
+  <!-- Header -->
+  <div class="guide-header">
+    <div class="guide-logo">📐</div>
+    <div class="guide-title">Rankers Mathematics</div>
+    <div class="guide-sub">Website Login Guide — Step by Step</div>
+  </div>
+
+  <!-- Step dots -->
+  <div class="steps-nav">
+    <div class="step-dot active" onclick="goTo(0)"></div>
+    <div class="step-dot" onclick="goTo(1)"></div>
+    <div class="step-dot" onclick="goTo(2)"></div>
+    <div class="step-dot" onclick="goTo(3)"></div>
+    <div class="step-dot" onclick="goTo(4)"></div>
+  </div>
+
+  <!-- STEP 1: Website kholein -->
+  <div class="step-card active" id="step0">
+    <div class="card-visual">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="padding:8px;">
+            <div style="background:#1346A0;border-radius:6px;padding:4px 8px;font-size:7px;color:white;text-align:center;margin-bottom:8px;">
+              🌐 chypram01-ai.github.io/Rankers...
+            </div>
+            <div style="text-align:center;padding:16px 8px;">
+              <div style="font-size:24px;margin-bottom:4px;">📐</div>
+              <div style="font-size:8px;font-weight:700;color:#1A1A2E;">Loading...</div>
+              <div style="height:3px;background:#E5E7EB;border-radius:2px;margin-top:8px;overflow:hidden;">
+                <div style="height:100%;width:70%;background:#1346A0;border-radius:2px;animation:load 1.5s ease infinite;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>@keyframes load{0%{width:0}100%{width:100%}}</style>
+    </div>
+    <div class="card-body">
+      <span class="step-num">Step 1 of 5</span>
+      <div class="step-title">Website kholein</div>
+      <div class="step-desc">
+        Apne phone ka <strong>Chrome browser</strong> kholen aur yeh link type karein:<br><br>
+        <strong style="font-size:13px;background:#EEF2FF;padding:4px 8px;border-radius:6px;display:block;margin-top:4px;">
+          chypram01-ai.github.io/Rankers-mathematics-/
+        </strong>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Tip:</strong> Sir ne WhatsApp par jo link bheja hai, wahi tap karein — seedha website khul jaayegi!
+      </div>
+      <div class="card-nav">
+        <button class="nav-btn next" onclick="goTo(1)">Agla Step →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Login Screen -->
+  <div class="step-card" id="step1">
+    <div class="card-visual">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-gate" style="padding:8px;">
+            <div class="screen-header">
+              <div class="screen-logo">📐</div>
+              <div class="screen-name">Rankers Mathematics</div>
+              <div class="screen-sub">Darbhanga, Bihar · Est. 2012</div>
+            </div>
+            <div class="screen-tabs">
+              <div class="screen-tab active pulse">🎓 Student</div>
+              <div class="screen-tab">👨‍🏫 Teacher</div>
+            </div>
+            <div style="padding:0 2px;">
+              <div class="screen-label">Roll Number daalo</div>
+              <div class="screen-input" style="color:#6B7280;font-size:6px;">Jaise: RM110</div>
+              <div class="screen-btn">🔓 Student Login</div>
+              <div class="screen-btn gray">👁 Sirf Dekhna Hai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow-hint" style="position:absolute;top:40px;right:20px;">👆</div>
+    </div>
+    <div class="card-body">
+      <span class="step-num">Step 2 of 5</span>
+      <div class="step-title">Login Screen dikhega</div>
+      <div class="step-desc">
+        Website kholte hi yeh screen aayegi.<br><br>
+        <strong>🎓 Student</strong> tab already select hoga.<br>
+        Yahan aapko apna <strong>Roll Number</strong> daalna hai.
+      </div>
+      <div class="tip-box">
+        <strong>💡 Note:</strong> "👁 Sirf Dekhna Hai" dabane par bhi website dikti hai — lekin Test aur Notes nahi milenge!
+      </div>
+      <div class="card-nav">
+        <button class="nav-btn prev" onclick="goTo(0)">← Pichla</button>
+        <button class="nav-btn next" onclick="goTo(2)">Agla Step →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Roll Number daalo -->
+  <div class="step-card" id="step2">
+    <div class="card-visual">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-gate" style="padding:8px;">
+            <div class="screen-header">
+              <div class="screen-logo">📐</div>
+              <div class="screen-name">Rankers Mathematics</div>
+            </div>
+            <div class="screen-tabs">
+              <div class="screen-tab active">🎓 Student</div>
+              <div class="screen-tab">👨‍🏫 Teacher</div>
+            </div>
+            <div style="padding:0 2px;">
+              <div class="screen-label">Roll Number daalo</div>
+              <div class="screen-input focused" style="font-size:7px;font-weight:700;color:#1346A0;">
+                <span class="typing-text done">RM110</span>
+              </div>
+              <div class="screen-btn pulse">🔓 Student Login</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="step-num">Step 3 of 5</span>
+      <div class="step-title">Roll Number type karein</div>
+      <div class="step-desc">
+        Input box mein <strong>apna Roll Number</strong> type karein.<br><br>
+        Roll Number kuch aisa dikhta hai:<br>
+        <strong style="font-size:20px;color:#1346A0;display:block;margin:8px 0;">RM110</strong>
+        Phir <strong>"🔓 Student Login"</strong> button dabayein.
+      </div>
+      <div class="tip-box">
+        <strong>⚠️ Dhyan dein:</strong> Roll Number Sir ne diya hoga — RM ke baad number aata hai (RM110, RM111... RM125). Capital letters mein likhein!
+      </div>
+      <div class="card-nav">
+        <button class="nav-btn prev" onclick="goTo(1)">← Pichla</button>
+        <button class="nav-btn next" onclick="goTo(3)">Agla Step →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: Login success -->
+  <div class="step-card" id="step3">
+    <div class="card-visual">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="padding:0 8px 8px;">
+            <div class="screen-bar">
+              <span>🎓 RM110 — David</span>
+              <span style="opacity:.7;font-size:5px;">Logout</span>
+            </div>
+            <div style="font-size:6px;font-weight:700;color:#1346A0;margin-bottom:4px;text-align:center;">
+              ✅ Welcome David!
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:4px;">
+              <div style="background:#EEF2FF;border-radius:5px;padding:5px;text-align:center;font-size:5px;font-weight:700;color:#1346A0;">📝 Online Test</div>
+              <div style="background:#E6F5EB;border-radius:5px;padding:5px;text-align:center;font-size:5px;font-weight:700;color:#1A7A40;">📚 Notes</div>
+              <div style="background:#FFF8E7;border-radius:5px;padding:5px;text-align:center;font-size:5px;font-weight:700;color:#C9952A;">📄 Weekly Test</div>
+              <div style="background:#FEF2F2;border-radius:5px;padding:5px;text-align:center;font-size:5px;font-weight:700;color:#C0392B;">📺 Videos</div>
+            </div>
+            <div style="background:#F3F4F6;border-radius:5px;padding:4px;text-align:center;font-size:5px;color:#6B7280;">
+              Aur bahut kuch...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="step-num">Step 4 of 5</span>
+      <div class="step-title">Login ho gaya! 🎉</div>
+      <div class="step-desc">
+        Login hone par upar <strong>green bar</strong> dikhega jisme aapka naam aur Roll Number hoga.<br><br>
+        Ab aap yeh sab dekh sakte ho:
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+        <div style="background:#EEF2FF;border-radius:8px;padding:8px;font-size:12px;font-weight:600;color:#1346A0;text-align:center;">📝 Online Test</div>
+        <div style="background:#E6F5EB;border-radius:8px;padding:8px;font-size:12px;font-weight:600;color:#1A7A40;text-align:center;">📚 Study Notes</div>
+        <div style="background:#FFF8E7;border-radius:8px;padding:8px;font-size:12px;font-weight:600;color:#C9952A;text-align:center;">📄 Weekly Test</div>
+        <div style="background:#FEF2F2;border-radius:8px;padding:8px;font-size:12px;font-weight:600;color:#C0392B;text-align:center;">📺 Live Classes</div>
+      </div>
+      <div class="card-nav">
+        <button class="nav-btn prev" onclick="goTo(2)">← Pichla</button>
+        <button class="nav-btn next" onclick="goTo(4)">Agla Step →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: Done -->
+  <div class="step-card" id="step4">
+    <div class="card-visual success-visual">
+      <div class="tick-anim">✅</div>
+      <p>Aap ready hain!</p>
+    </div>
+    <div class="card-body">
+      <span class="step-num">Step 5 of 5</span>
+      <div class="step-title">Sab clear! Abhi test do 🏆</div>
+      <div class="step-desc">
+        Ab aap Rankers Mathematics website use kar sakte hain.<br><br>
+        <strong>Roll Number bhool jaane par:</strong><br>
+        Sir ko WhatsApp karein: <strong>6201144061</strong>
+      </div>
+      <div class="tip-box">
+        <strong>📱 App Install karein:</strong> Website kholne ke baad neeche <em>"Phone mein Install Karein"</em> button dikhega — dabayein aur Home Screen par App save ho jaayega!
+      </div>
+
+      <!-- Summary -->
+      <div style="background:#F8F9FC;border-radius:12px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;color:#1A1A2E;margin-bottom:8px;">Quick Summary</div>
+        <div style="font-size:12px;color:#4B5563;display:flex;flex-direction:column;gap:6px;">
+          <div>1️⃣ Website link kholo</div>
+          <div>2️⃣ <strong>Student</strong> tab select karo</div>
+          <div>3️⃣ Roll Number daalo (jaise RM110)</div>
+          <div>4️⃣ <strong>Login</strong> dabao → Done!</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/916201144061?text=Sir%20mujhe%20Roll%20Number%20chahiye%20website%20login%20ke%20liye" 
+         class="share-btn" target="_blank">
+        💬 Roll Number ke liye WhatsApp karein
+      </a>
+
+      <div class="card-nav" style="margin-top:10px;">
+        <button class="nav-btn prev" onclick="goTo(3)">← Pichla</button>
+        <button class="nav-btn next" onclick="goTo(0)" style="background:#C9952A;">🔄 Phir Dekho</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="guide-footer">
+  Rankers Mathematics · Darbhanga, Bihar<br>
+  📞 <a href="tel:6201144061">6201144061</a> · <a href="tel:7283057189">7283057189</a>
+</div>
+
+<script>
+var current = 0;
+var total = 5;
+
+function goTo(n) {
+  document.getElementById('step' + current).classList.remove('active');
+  document.querySelectorAll('.step-dot')[current].classList.remove('active');
+  current = n;
+  document.getElementById('step' + current).classList.add('active');
+  document.querySelectorAll('.step-dot')[current].classList.add('active');
+}
+
+// Auto-advance every 5 seconds
+setInterval(function(){
+  var next = (current + 1) % total;
+  goTo(next);
+}, 5000);
+
+// Touch swipe support
+var startX = 0;
+document.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; });
+document.addEventListener('touchend', function(e){
+  var diff = startX - e.changedTouches[0].clientX;
+  if(Math.abs(diff) > 50) {
+    if(diff > 0) goTo(Math.min(current+1, total-1));
+    else goTo(Math.max(current-1, 0));
+  }
+});
+</script>
+</body>
+</html>
